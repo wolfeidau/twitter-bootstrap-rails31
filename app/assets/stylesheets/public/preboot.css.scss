@@ -180,4 +180,88 @@ $analog2:           adjust-hue($baseColor, 022deg);
 }
 
 
+// Buttons
+@mixin button($color: #fff, $padding: 4px 14px, $textColor: #333, $textShadow: 0 1px 1px rgba(255,255,255,.75), $fontSize: 13px, $borderColor: rgba(0,0,0,.1), $borderRadius: 4px) {
+  display: inline-block;
+  @include gradient-vertical-three-colors($color, $color, 0.25, darken($color, 10%));
+  padding: $padding;
+  text-shadow: $textShadow;
+  color: $textColor;
+  font-size: $fontSize;
+  line-height: $baseline;
+  border: 1px solid $borderColor;
+  border-bottom-color: fadein($borderColor, 15%);
+  @include border-radius($borderRadius);
+  $shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  @include box-shadow($shadow);
+  &:hover {
+    background-position: 0 -15px;
+    color: $textColor;
+    text-decoration: none;
+  }
+}
 
+// Add an alphatransparency value to any background or border color (via Elyse Holladay)
+@mixin translucent-background($color: $white, $alpha: 1) {
+    background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+}
+@mixin translucent-border($color: $white, $alpha: 1) {
+    border-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+    background-clip: padding-box;
+}
+
+// Gradients
+@mixin gradient-horizontal($startColor: #555, $endColor: #333) {
+    background-color: $endColor;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, right top, from($startColor), to($endColor)); // Konqueror
+    background-image: -moz-linear-gradient(left, $startColor, $endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(left, $startColor, $endColor); // IE10
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, $startColor), color-stop(100%, $endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
+    -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=1)); // IE8+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=1); // IE6 & IE7
+    background-image: linear-gradient(left, $startColor, $endColor); // Le standard
+}
+@mixin gradient-vertical($startColor: #555, $endColor: #333) {
+    background-color: $endColor;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from($startColor), to($endColor)); // Konqueror
+    background-image: -moz-linear-gradient($startColor, $endColor); // FF 3.6+
+    background-image: -ms-linear-gradient($startColor, $endColor); // IE10
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $startColor), color-stop(100%, $endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient($startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient($startColor, $endColor); // Opera 11.10
+    -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=0)); // IE8+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=0); // IE6 & IE7
+    background-image: linear-gradient($startColor, $endColor); // The standard
+}
+@mixin gradient-directional($startColor: #555, $endColor: #333, $deg: 45deg) {
+    background-color: $endColor;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient($deg, $startColor, $endColor); // FF 3.6+
+    background-image: -ms-linear-gradient($deg, $startColor, $endColor); // IE10
+    background-image: -webkit-linear-gradient($deg, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient($deg, $startColor, $endColor); // Opera 11.10
+    background-image: linear-gradient($deg, $startColor, $endColor); // The standard
+}
+@mixin gradient-vertical-three-colors($startColor: #00b3ee, $midColor: #7a43b6, $colorStop: 0.5, $endColor: #c3325f) {
+    background-color: $endColor;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), color-stop($colorStop, $midColor), to($endColor));
+    background-image: -webkit-linear-gradient($startColor, color-stop($colorStop, $midColor), $endColor);
+    background-image: -moz-linear-gradient($startColor, $midColor $colorStop*100%, $endColor);
+    background-image: -ms-linear-gradient($startColor, color-stop($midColor, $colorStop), $endColor);
+    background-image: -o-linear-gradient($startColor, color-stop($midColor, $colorStop), $endColor);
+    background-image: linear-gradient($startColor, color-stop($midColor, $colorStop), $endColor);
+}
+
+
+// Opacity
+@mixin opacity($opacity: 100) {
+	filter: alpha(opacity=#{$opacity});
+	-khtml-opacity: $opacity / 100;
+	-moz-opacity: $opacity / 100;
+	opacity: $opacity / 100;
+}
