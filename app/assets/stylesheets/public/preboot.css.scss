@@ -138,7 +138,6 @@ $analog2:           adjust-hue($baseColor, 022deg);
     &:first-child {
         @include offsetMath(20px, $columnOffset);
     }
-  }
 }
 
 // Border Radius
