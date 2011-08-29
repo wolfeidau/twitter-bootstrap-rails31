@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TwitterBootstrapRails31</title>
+  <title>Project Wizard - <%= @title %></title>
 
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
   <!--[if lt IE 9]>
@@ -19,11 +19,11 @@
 <div class="topbar">
   <div class="fill">
     <div class="container fixed">
-      <h3><a href="#">Project name</a></h3>
+      <h3><a href="#">Project Wizard</a></h3>
       <ul>
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li <%= (@title == "Home" ? "class='active'" : "") %>><a href="/">Home</a></li>
+        <li <%= (@title == "About" ? "class='active'" : "") %>><a href="/about">About</a></li>
+        <li <%= (@title == "Contact" ? "class='active'" : "") %>><a href="/contact">Contact</a></li>
       </ul>
     </div>
   </div>
