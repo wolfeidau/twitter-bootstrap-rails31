@@ -25,6 +25,13 @@
         <li <%= (@title == "About" ? "class='active'" : "") %>><a href="/about">About</a></li>
         <li <%= (@title == "Contact" ? "class='active'" : "") %>><a href="/contact">Contact</a></li>
       </ul>
+      <ul class="nav secondary-nav">
+        <li class="menu"><a href="#login" class="menu">Login</a>
+            <ul class="menu-dropdown">
+              <li><a href="#">Secondary link</a></li>
+            </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
